@@ -28,22 +28,25 @@ class Player:
         damage = 0
         if offence_successes > (defence_successes + self.armour):  # successful attack, failed defence
             self.bleeding = True
-            damage = sum(incoming_attack_rolls) - (2 * self.armour)
+            print(f'damage before deductions: {sum(incoming_attack_rolls)}')
+            damage = sum(incoming_attack_rolls) - (20 * self.armour)
 
         if self.bleeding:
-            damage += 0.1 * self.hp
+            damage += 0.15 * self.hp
 
         self.hp -= damage
 
         return damage
 
-
+'''
 # test case
-player1 = Player("Prime", 20, 3, 10)
-player2 = Player("Secundus", 20, 3, 10)
+player1 = Player("Prime", 500, 3, 10)
+player2 = Player("Secundus", 500, 3, 10)
+turn = 1
 
 # game loop:
 while player1.hp > 0 and player2.hp > 0:
+    print(f'Round: {turn}')
     print("{}'s turn".format(player1.name))
     attack_rolls = player1.attack()
     damage = player2.defend(attack_rolls)
@@ -54,8 +57,12 @@ while player1.hp > 0 and player2.hp > 0:
     damage = player1.defend(attack_rolls)
     print(f"{player1.name} takes {damage} damage. {player1.hp} hp left\n")
 
+    turn += 1
+
+
 print("Game over.")
 if player1.hp <= 0:
-    print("Player 2 wins!")
+    print(f'{player2.name} wins!!')
 else:
-    print("Player 1 wins!")
+    print(f'{player1.name} wins!!')
+'''
